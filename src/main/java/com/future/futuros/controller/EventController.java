@@ -6,6 +6,7 @@ import org.dozer.inject.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,8 +39,8 @@ public class EventController {
         return resultado;
     }
 
-    @RequestMapping("/regex")
-    public String generarCodigo(@RequestParam(value = "pattern", defaultValue = "[1-3]{3}ABC") String pattern){
+    @RequestMapping(value = "/regex", method = RequestMethod.POST)
+    public String generarCodigo(@RequestParam(value = "pattern") String pattern){
         generex = new Generex(pattern);
         return generex.random();
     }
